@@ -11,6 +11,7 @@ public class test {
     static HashMap<Character, String[][]> alphabetList = new HashMap<Character, String[][]>();
     static ArrayList<String> list = new ArrayList<>();
     static String[][] alphabet;
+    static String[][] rotatedAlphabet;
     
     static void insertAlphabet(int n, String[][] arr) {
         if(n == 0) {alphabetList.put('A', arr);}
@@ -47,40 +48,56 @@ public class test {
         for(int letterNumber = 0; letterNumber < 26; letterNumber++) { // 총 26자
             alphabet = new String[42][12];
             int end = start + 6;
-            int x = 0;
+            int y = 0;
             for(int indexLine = start; indexLine <= end; indexLine++) { // 알파벳 한 글자를 배열에 저장
-                int y = 0;
+                int x = 0;
                 String bitmap = list.get(indexLine);
                 for(int col = 0; col < 6; col++){
                     if((bitmap.charAt(col) - '0') == 1) {
-                        for(int n = x; n < (x + 6); n++) {
-                            for(int m = y; m < (y + 2); m++) {
+                        for(int n = y; n < (y + 6); n++) {
+                            for(int m = x; m < (x + 2); m++) {
                                 alphabet[n][m] = "@";
                             }
                         }
-                        y = y + 2;
+                        x = x + 2;
                     } else if((bitmap.charAt(col) - '0') == 0) {
-                        for(int n = x; n < (x + 6); n++) {
-                            for(int m = y; m < (y + 2); m++) {
+                        for(int n = y; n < (y + 6); n++) {
+                            for(int m = x; m < (x + 2); m++) {
                                 alphabet[n][m] = " ";
                             }
                         }
-                        y = y + 2;
+                        x = x + 2;
                     }
                 }
-                x = x + 6;
+                y = y + 6;
             }
-            insertAlphabet(letterNumber, alphabet);
+            
+            rotatedAlphabet = new String[12][42];
+            rotationAlphabet();
+            
+            insertAlphabet(letterNumber, rotatedAlphabet);
             start = start + 8;
         }
         
-        String[][] space = new String[42][12];
-        for(int i = 0; i < 42; i++){
-            for(int j = 0; j < 12; j++){
+        String[][] space = new String[12][42];
+        for(int i = 0; i < 12; i++){
+            for(int j = 0; j < 42; j++){
                 space[i][j] = " ";
             }
         }
         insertAlphabet(26, space);
+    }
+    
+    static void rotationAlphabet() {
+        int m = 41;
+        for(int i = 0; i < 42; i++) {
+            int n = 0;
+            for(int j = 0; j < 12; j++) {
+                rotatedAlphabet[n][m] = alphabet[i][j];
+                n++;
+            }
+            m--;
+        }
     }
     
     public static void main(String[] args) {
@@ -101,14 +118,14 @@ public class test {
             for(int k = 0; k < input.length(); k++) {
                 char letter = input.charAt(k);
                 String[][] result = alphabetList.get(letter);
-                for(int i = 0; i < 42; i++){
-                    for(int j = 0; j < 12; j++){
+                for(int i = 0; i < 12; i++){
+                    for(int j = 0; j < 42; j++){
                         System.out.print(result[i][j]);
                     }
                     System.out.println();
                 }
             }
-         // 문장 입력과 출력- 끝
+            // 문장 입력과 출력- 끝
             
             sc.close();
         } catch (Exception e) {
