@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class test {
-    
+public class test2 {
     static HashMap<Character, String[][]> alphabetList = new HashMap<Character, String[][]>();
     static ArrayList<String> list = new ArrayList<>();
     static String[][] alphabet;
@@ -74,9 +73,9 @@ public class test {
             start = start + 8;
         }
         
-        String[][] space = new String[42][12];
-        for(int i = 0; i < 42; i++){
-            for(int j = 0; j < 12; j++){
+        String[][] space = new String[7][6];
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 6; j++){
                 space[i][j] = " ";
             }
         }
@@ -94,7 +93,6 @@ public class test {
             
             expandAlphabet();
             
-            // 문장 입력과 출력 - 시작 
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine().toUpperCase();
             
@@ -108,11 +106,31 @@ public class test {
                     System.out.println();
                 }
             }
-         // 문장 입력과 출력- 끝
+            
+            /*for(int alphabetTotal = 0; alphabetTotal < 1; alphabetTotal++) {
+                String[][] alphabet = new String[42][12];
+                alphabet = expandAlphabet();
+                insertAlphabet(alphabetTotal, alphabet);
+            }*/
+            
+            //Scanner sc = new Scanner(System.in);
+            //String input = sc.nextLine().toUpperCase();
+            
+            /*for(int k = 0; k < input.length(); k++) {
+                char letter = input.charAt(k);
+                String[][] result = alphabets.get(letter);
+                for(int i = 0; i < 42; i++){
+                    for(int j = 0; j < 12; j++){
+                        System.out.print(result[i][j]);
+                    }
+                    System.out.println();
+                }
+            }*/
             
             sc.close();
-        } catch (Exception e) {
             
+        } catch (Exception e) {
+            // TODO: handle exception
         }
     }
 }
