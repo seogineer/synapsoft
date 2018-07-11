@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class test {
+public class test { 
     
     static HashMap<Character, String[][]> alphabetList = new HashMap<Character, String[][]>();
     static ArrayList<String> list = new ArrayList<>();
